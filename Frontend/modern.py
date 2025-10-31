@@ -13,10 +13,15 @@ import datetime
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from PIL import Image, ImageTk
+import logging
 import cv2
 import numpy as np
 import pandas as pd
 import sys
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # ----------------------- Utilities -----------------------
 
@@ -287,6 +292,7 @@ class AttendanceApp:
         self.msg_var.set("Starting camera to take images...")
         self.progress['value'] = 0
         assure_path_exists(self.dir_training)
+        logger.info("Starting camera capture for user %s (ID: %s)", name, uid)
 
         # compute serial number (simple incremental)
         serial = 1
